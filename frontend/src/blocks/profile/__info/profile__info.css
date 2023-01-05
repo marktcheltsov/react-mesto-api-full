@@ -1,0 +1,24 @@
+
+.profile__info {
+    max-width: 486px;
+    align-self: center;
+    display: grid;
+    grid-template-columns: 150px 294px 42px;
+    grid-template-areas: 
+    "i a b"
+    "i c c";
+}
+
+
+@media screen and (max-width:950px) {
+
+.profile__info {
+    max-width: 282px;
+    grid-template-columns: 189px 28px;
+    gap: 14px 10px;
+    grid-template-areas:
+    "i i" 
+    "a b"
+    "c c";
+}
+}

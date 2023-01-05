@@ -1,0 +1,16 @@
+.popup__input-container {
+    min-height: 44px;
+    width: 100%;
+}
+
+.popup__input-container:first-of-type {
+    margin-bottom: 13px;
+}
+
+@media screen and (max-width:950px) {
+
+.popup__input-container {
+    max-height: 44px;
+    width: 100%;
+}
+}

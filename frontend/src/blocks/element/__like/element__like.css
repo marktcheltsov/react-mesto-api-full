@@ -1,0 +1,22 @@
+
+.element__like {
+    width: 22px;
+    height: 19px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url(../../../images/element__like/Vector.svg);
+    border: none;
+    background-color: unset;
+    background-repeat: no-repeat;
+}
+
+
+.element__like:hover {
+    opacity: 0.5;
+    cursor: pointer;
+}
+
+.element__like:active {
+    background-image: url(../../..//images/element__like/Union.png);
+}

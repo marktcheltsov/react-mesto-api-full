@@ -1,0 +1,27 @@
+
+.profile__card-button {
+    width: 150px;
+    height: 50px;
+    border: 2px solid #FFFFFF;
+    border-radius: 2px;
+    background-color: #000000;
+    background-image: url(../../../images/profile__button/Vector\ \(2\).png);
+    background-repeat: no-repeat;
+    background-position: center;
+    align-self: center;
+    float: right;
+}
+
+.profile__card-button:hover {
+    opacity: 0.6;
+    cursor: pointer;
+}
+
+@media screen and (max-width:950px) {
+
+.profile__card-button {
+    width: 282px;
+    min-height: 50px;
+    background-image: url(../../../images/profile__button/Vector\ \(3\).png);
+}
+}

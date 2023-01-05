@@ -1,0 +1,10 @@
+.element__like_active {
+    width: 22px;
+    height: 19px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url(../../../../images/element__like/Union.png);
+    border: none;
+    background-color: unset;
+} 
