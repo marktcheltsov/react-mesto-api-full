@@ -4,11 +4,16 @@ const bodyParser = require('body-parser');
 const { celebrate, Joi } = require('celebrate');
 const { errors } = require('celebrate');
 
+const path = require('path');
+
 const { login, creatUser } = require('./controllers/user');
 
 const NotFoundError = require('./errors/not-found-err');
 
 const app = express();
+
+app.use(express.static(path.join(__dirname, 'public')));
+
 const { PORT = 3000 } = process.env;
 
 const userRouter = require('./routes/userRoutes');
@@ -41,6 +46,7 @@ app.use('/cards', cardRouter);
 
 app.use('*', (req, res, next) => {
   const err = new NotFoundError('указан неправильный путь');
+  console.log(path.join(__dirname, 'public'));
   next(err);
 });
 
