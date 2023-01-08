@@ -12,7 +12,7 @@ const NotFoundError = require('./errors/not-found-err');
 
 const app = express();
 
-app.use(express.static(path.join(__dirname, '../frontend/public')));
+app.use(express.static(path.join(__dirname, '../frontend/build')));
 
 const { PORT = 3000 } = process.env;
 
