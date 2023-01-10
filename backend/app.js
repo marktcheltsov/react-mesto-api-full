@@ -5,13 +5,14 @@ const { celebrate, Joi } = require('celebrate');
 const { errors } = require('celebrate');
 
 const path = require('path');
+const cheakCors = require('./middlewares/cheackCors');
 
 const { login, creatUser } = require('./controllers/user');
 
 const NotFoundError = require('./errors/not-found-err');
 
 const app = express();
-
+app.use(cheakCors)
 app.use(express.static(path.join(__dirname, '../frontend/build')));
 
 const { PORT = 3000 } = process.env;
