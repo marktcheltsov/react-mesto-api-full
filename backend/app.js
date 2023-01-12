@@ -5,6 +5,9 @@ const { celebrate, Joi } = require('celebrate');
 const { errors } = require('celebrate');
 
 const path = require('path');
+
+const cors = require('cors');
+
 const cheakCors = require('./middlewares/cheackCors');
 
 const { login, creatUser } = require('./controllers/user');
