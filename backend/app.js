@@ -12,7 +12,17 @@ const { login, creatUser } = require('./controllers/user');
 const NotFoundError = require('./errors/not-found-err');
 
 const app = express();
-app.use(cheakCors)
+
+const allowedCors = ['http://cheltsovsmesto.nomoredomains.club', 'http://localhost:3000'];
+
+const corsOptions = {
+  origin: allowedCors,
+  optionsSuccessStatus: 200,
+  credentials: true,
+};
+
+app.use(cors(corsOptions));
+
 app.use(express.static(path.join(__dirname, '../frontend/build')));
 
 const { PORT = 3000 } = process.env;
