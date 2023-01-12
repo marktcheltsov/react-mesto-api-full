@@ -1,4 +1,4 @@
-const allowedCors = ['http://cheltsovsmesto.nomoredomains.club', 'http://localhost:3000/login'];
+const allowedCors = ['http://cheltsovsmesto.nomoredomains.club', 'http://localhost:3000'];
 
 const cheakCors = (req, res, next) => {
   const { origin } = req.headers;
