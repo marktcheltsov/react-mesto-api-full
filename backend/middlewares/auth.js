@@ -5,7 +5,7 @@ const WrongData = require('../errors/wrong-data-err');
 const auth = (req, res, next) => {
   const { Authorization } = req.headers;
   if (!Authorization || !Authorization.startsWith('Bearer ')) {
-    const err = new WrongData(Authorization);
+    const err = new WrongData(req.headers);
     next(err);
   }
   const token = Authorization.replace('Bearer ', '');
