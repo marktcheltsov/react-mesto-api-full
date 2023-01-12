@@ -15,6 +15,16 @@ const app = express();
 
 app.use(express.static(path.join(__dirname, '../frontend/build')));
 
+const allowedCors = ['http://cheltsovsmesto.nomoredomains.club', 'http://localhost:3000'];
+
+const corsOptions = {
+  origin: allowedCors,
+  optionsSuccessStatus: 200,
+  credentials: true,
+};
+
+app.use(cors(corsOptions));
+
 const { PORT = 3000 } = process.env;
 
 const userRouter = require('./routes/userRoutes');
