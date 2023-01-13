@@ -137,7 +137,7 @@ const login = async (req, res, next) => {
       'some-secret-key',
       { expiresIn: '7d' },
     );
-    return res.status(200).json({ token });
+    return res.status(200).json({ jwt: token, userId: user._id });
   } catch (e) {
     console.log(e);
     const err = new IncomprehensibleErr('произошла ошибка');
@@ -153,3 +153,4 @@ module.exports = {
   updateUserAvatar,
   login,
 };
+
