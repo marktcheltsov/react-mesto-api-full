@@ -7,7 +7,7 @@ const {
 
 router.get('/', getUsers);
 
-router.get('/:id', getUser);
+router.get('/me', getUser);
 
 router.patch('/me/avatar', celebrate({
   body: Joi.object().keys({
