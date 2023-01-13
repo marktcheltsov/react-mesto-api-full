@@ -49,9 +49,8 @@ const creatUser = (req, res, next) => {
 };
 
 const getUser = async (req, res, next) => {
-  const { id } = req.params;
   try {
-    const user = await User.findById(id);
+    const user = await User.findById(req.user._id);
     if (!user) {
       const err = new NotFoundError('Запрашиваемый пользователь не найден');
       return next(err);
@@ -153,4 +152,5 @@ module.exports = {
   updateUserAvatar,
   login,
 };
+
 
