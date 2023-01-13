@@ -9,6 +9,7 @@ const path = require('path');
 const cors = require('cors');
 
 const cheakCors = require('./middlewares/cheackCors');
+const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 const { login, creatUser } = require('./controllers/user');
 const NotFoundError = require('./errors/not-found-err');
@@ -25,7 +26,10 @@ const { PORT = 3000 } = process.env;
 const userRouter = require('./routes/userRoutes');
 const cardRouter = require('./routes/cardRouter');
 const { auth } = require('./middlewares/auth');
+
 app.use(bodyParser.json());
+app.use(requestLogger);
+
 app.post('/signin', celebrate({
   body: Joi.object().keys({
     email: Joi.string().required().email(),
