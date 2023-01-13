@@ -137,7 +137,7 @@ const login = async (req, res, next) => {
       'some-secret-key',
       { expiresIn: '7d' },
     );
-    return res.status(200).json([token, user._id]);
+    return res.status(200).json({ token });
   } catch (e) {
     console.log(e);
     const err = new IncomprehensibleErr('произошла ошибка');
