@@ -3,17 +3,18 @@ const jwt = require('jsonwebtoken');
 const WrongData = require('../errors/wrong-data-err');
 
 const auth = (req, res, next) => {
-  const { Authorization } = req.headers;
-  if (!Authorization || !Authorization.startsWith('Bearer ')) {
-    const err = new WrongData(req.headers);
+  const { authorization } = req.headers;
+  console.log(req.headers);
+  if (!authorization || !authorization.startsWith('Bearer ')) {
+    const err = new WrongData('Необходима авторизация');
     next(err);
   }
-  const token = Authorization.replace('Bearer ', '');
+  const token = authorization.replace('Bearer ', '');
   let payload;
   try {
     payload = jwt.verify(token, 'some-secret-key');
   } catch (e) {
-    const err = new WrongData([Authorization, token, payload]);
+    const err = new WrongData('Необходима авторизация');
     next(err);
   }
   req.user = payload;
