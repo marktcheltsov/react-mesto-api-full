@@ -50,6 +50,9 @@ app.use('*', (req, res, next) => {
   console.log(path.join(__dirname, 'public'));
   next(err);
 });
+
+app.use(errorLogger);
+
 app.use(errors());
 app.use((err, req, res, next) => {
   res.status(err.statusCode).json({ message: err.message, status: err.statusCode });
