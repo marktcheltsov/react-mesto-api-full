@@ -8,15 +8,12 @@ const path = require('path');
 
 const cors = require('cors');
 
-const cheakCors = require('./middlewares/cheackCors');
-
 const { login, creatUser } = require('./controllers/user');
+const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 const NotFoundError = require('./errors/not-found-err');
 
 const app = express();
-
-app.use(express.static(path.join(__dirname, '../frontend/build')));
 
 const allowedCors = ['http://cheltsovsmesto.nomoredomains.club', 'http://localhost:3000'];
 
@@ -28,6 +25,8 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 
+app.use(express.static(path.join(__dirname, '../frontend/public')));
+
 const { PORT = 3000 } = process.env;
 
 const userRouter = require('./routes/userRoutes');
@@ -37,6 +36,8 @@ const cardRouter = require('./routes/cardRouter');
 const { auth } = require('./middlewares/auth');
 
 app.use(bodyParser.json());
+
+app.use(requestLogger);
 
 app.post('/signin', celebrate({
   body: Joi.object().keys({
@@ -63,6 +64,8 @@ app.use('*', (req, res, next) => {
   console.log(path.join(__dirname, 'public'));
   next(err);
 });
+
+app.use(errorLogger);
 
 app.use(errors());
 
