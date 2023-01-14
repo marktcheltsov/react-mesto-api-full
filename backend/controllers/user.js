@@ -1,5 +1,7 @@
+const { NODE_ENV, JWT_SECRET } = process.env;
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+
 const User = require('../models/users');
 
 const NotFoundError = require('../errors/not-found-err');
@@ -133,10 +135,10 @@ const login = async (req, res, next) => {
     }
     const token = jwt.sign(
       { _id: user._id },
-      'some-secret-key',
+      NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret',
       { expiresIn: '7d' },
     );
-    return res.status(200).json({ jwt: token, userId: user._id });
+    return res.status(200).json({ jwt: token });
   } catch (e) {
     console.log(e);
     const err = new IncomprehensibleErr('произошла ошибка');
