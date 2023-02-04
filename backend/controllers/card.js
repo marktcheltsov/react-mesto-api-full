@@ -36,7 +36,7 @@ const creatCard = async (req, res, next) => {
 const deleteCard = async (req, res, next) => {
   try {
     const { cardId } = req.params;
-    const card = await Card.findByIdAndRemove(cardId);
+    const card = await Card.findById(cardId);
     if (!card) {
       const err = new NotFoundError('Запрашиваемая карточка не найдена');
       return next(err);
@@ -45,6 +45,7 @@ const deleteCard = async (req, res, next) => {
       const err = new AccessErr('у вас нет прав на это');
       return next(err);
     }
+    card.remove();
     return res.status(200).json(card);
   } catch (e) {
     if ((e.name === 'CastError') || (e.name === 'TypeError')) {

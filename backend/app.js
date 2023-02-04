@@ -18,7 +18,7 @@ const app = express();
 
 app.use(express.static(path.join(__dirname, '../frontend/build')));
 
-const allowedCors = ['http://cheltsovsmesto.nomoredomains.club', 'http://localhost:3000'];
+const allowedCors = ['http://cheltsovsmesto.nomoredomains.club', 'http://localhost:3000', 'https://cheltsovsmesto.nomoredomains.club'];
 
 const corsOptions = {
   origin: allowedCors,
@@ -57,6 +57,9 @@ app.post('/signup', celebrate({
   body: Joi.object().keys({
     email: Joi.string().required().email(),
     password: Joi.string().required(),
+    name: Joi.string(),
+    about: Joi.string(),
+    avatar: Joi.string(),
   }),
 }), creatUser);
 
@@ -76,7 +79,9 @@ app.use(errorLogger);
 app.use(errors());
 
 app.use((err, req, res, next) => {
-  res.status(err.statusCode).json({ message: err.message, status: err.statusCode });
+  const statusCode = err.statusCode || 500;
+  const errMessage = statusCode === 500 ? 'На сервере произошла ошибка' : err.message;
+  res.status(err.statusCode).json({ message: errMessage, status: statusCode });
   next();
 });
 
